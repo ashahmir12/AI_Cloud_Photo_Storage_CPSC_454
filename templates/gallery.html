@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body */
+    body {
+      background-color: #f3f4f6; 
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      background-color: #ffffff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #111827;
+    }
+
+    .nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #4b5563; 
+      font-weight: 500;
+    }
+
+    .nav a:hover {
+      color: #3b82f6; 
+    }
+
+    /* Main */
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #111827;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .gallery-grid img {
+      max-width: 100px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">My Image Gallery</div>
+    <nav class="nav">
+      <a href="/">Home</a> <!-- Updated path to use Flask routing -->
+      <a href="/upload">Upload</a>
+      <a href="/gallery">Gallery</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <div class="gallery-section">
+      <h2 class="section-title">Uploaded Images</h2>
+      <div class="gallery-grid" id="gallery"></div>
+    </div>
+  </main>
+
+  <script>
+    window.onload = function() {
+      const galleryContainer = document.getElementById('gallery');
+
+      // Fetch list of uploaded images from Flask backend
+      fetch('/list-images')
+        .then(response => response.json())
+        .then(images => {
+          images.forEach(url => {
+            const img = document.createElement('img');
+            img.src = url; // Use S3 image URL
+            galleryContainer.appendChild(img);
+          });
+        })
+        .catch(error => {
+          console.error('Error loading gallery:', error);
+        });
+    }
+  </script>
+
+</body>
+</html>
