@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.upload-section {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.section-title {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.upload-box {
+  border: 2px dashed #bbb;
+  border-radius: 8px;
+  padding: 40px 20px;
+  background: #f9fafb;
+  cursor: pointer;
+}
+
+.upload-box p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+#choose-button {
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#choose-button:hover {
+  background-color: #357ae8;
+}
+
+/* Dragging highlight */
+.upload-box.dragover {
+  background-color: #eef;
+  border-color: #333;
+}
+
+/* Preview and remove button */
+.preview-image {
+    max-width: 100px;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  
+  .remove-button {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .remove-button:hover {
+    background-color: #d93f3f;
+  }
+  
+  .upload-button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  .upload-button:hover {
+    background-color: #2563eb;
+  }
+  

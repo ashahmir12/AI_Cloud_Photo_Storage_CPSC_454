@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  background-color: #f3f4f6; 
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+.nav a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #4b5563; 
+  font-weight: 500;
+}
+
+.nav a:hover {
+  color: #3b82f6; 
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Upload Section */
+.upload-section {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #111827;
+}
+
+/* Upload Box */
+.upload-box {
+  border: 2px dashed #d1d5db; 
+  padding: 2rem;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #f9fafb; 
+  cursor: pointer;
+}
+
+.upload-text {
+  color: #6b7280; 
+  font-size: 1rem;
+}
+
+/* Highlight when dragging */
+.upload-box.dragover {
+    background-color: #eef;
+    border: 2px dashed #333;
+  }
+  
+  /* Uploaded image preview */
+  .preview-image {
+    max-width: 100px;
+    margin: 10px;
+    border-radius: 8px;
+  }
+  
+  /* Preview and remove button */
+.preview-image {
+    max-width: 100px;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  
+  .remove-button {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .remove-button:hover {
+    background-color: #d93f3f;
+  }
+  
+  .upload-button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  .upload-button:hover {
+    background-color: #2563eb;
+  }
+  
