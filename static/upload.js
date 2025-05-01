@@ -110,7 +110,10 @@ function uploadImageToServer(file) {
   // Pass userId so backend can attach to DynamoDB
   formData.append('userId', 'demo-user-123'); // Change this as needed
 
-  fetch('http://localhost:5000/upload-image', {
+  // Replace 'localhost' with your actual EC2 public IP or domain
+  const backendURL = 'http://54.193.154.105:5000/upload-image';
+
+  fetch(backendURL, {
     method: 'POST',
     body: formData
   })
