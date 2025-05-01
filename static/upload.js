@@ -45,20 +45,21 @@ uploadBox.addEventListener('drop', (event) => {
 
 // Function for uploaded file
 function handleFiles(files) {
+  if (!files || files.length === 0) return; // Prevents crash if no file is passed
+
   if (files.length > 1) {
     alert('Only one image can be uploaded at a time!');
     return;
   }
 
   const file = files[0];
-  if (!file.type.startsWith('image/')) {
+  if (!file.type || !file.type.startsWith('image/')) {
     alert('Only images are allowed!');
     return;
   }
 
   const reader = new FileReader();
   reader.onload = (e) => {
-    
     uploadBox.innerHTML = '';
 
     // Image preview
@@ -71,11 +72,9 @@ function handleFiles(files) {
     uploadBox.appendChild(removeButton);
     uploadBox.appendChild(uploadButton);
 
-    // Show remove button
     removeButton.style.display = 'inline-block';
     uploadButton.style.display = 'inline-block';
 
-    // Store selected file for upload
     window.selectedFile = file;
   };
   reader.readAsDataURL(file);
@@ -99,16 +98,18 @@ uploadButton.addEventListener('click', () => {
     return;
   }
 
-  // Function to upload image
+  // Upload image and show labels
   uploadImageToServer(window.selectedFile);
 });
 
-// Function to upload image to S3
+// Upload image to Flask backend with userId
 function uploadImageToServer(file) {
   const formData = new FormData();
   formData.append('file', file);
 
-  // API call to upload image
+  // Pass userId so backend can attach to DynamoDB
+  formData.append('userId', 'demo-user-123'); // Change this as needed
+
   fetch('http://localhost:5000/upload-image', {
     method: 'POST',
     body: formData
@@ -116,27 +117,15 @@ function uploadImageToServer(file) {
   .then(response => response.json())
   .then(data => {
     alert('File uploaded successfully!');
-    
+
+    // Show Rekognition labels from server
+    if (data.tags && data.tags.length > 0) {
+      const labelText = data.tags.join(', ');
+      alert('Detected labels: ' + labelText);
+    }
   })
   .catch(error => {
     console.error('Error uploading file:', error);
     alert('Error uploading file');
-  });
-}
-
-// Added section for Home Page Upload (index.html)
-// Select file input and upload button from index.html
-const homeFileInput = document.getElementById('file-input');
-const homeUploadButton = document.getElementById('upload-button');
-
-// When upload button is clicked (index.html)
-if (homeFileInput && homeUploadButton) {
-  homeUploadButton.addEventListener('click', () => {
-    const file = homeFileInput.files[0];
-    if (!file) {
-      alert('Please select an image first!');
-      return;
-    }
-    uploadImageToServer(file);
   });
 }
